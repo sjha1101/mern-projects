@@ -1,0 +1,147 @@
+.home-wrapper {
+    padding: 0;
+    /* Remove padding to let navbar stretch fully */
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    padding: 15px 30px;
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.home-header h2 {
+    color: #00eaff;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: #00c4ff;
+    color: #000;
+}
+
+.add-btn {
+    background: #00eaff;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #00c4ff;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px;
+}
+
+.recipe-card {
+    background: #000000;
+    border-radius: 15px;
+    width: calc(25.33% - 20px);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.recipe-info h3 {
+    color: #00c4ff;
+    margin-bottom: 8px;
+}
+
+.recipe-info p {
+    color: #e9e5e5;
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+.recipe-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background: #e9e5e5;
+    color: #000;
+}
+
+.edit-btn:hover {
+    background: #00c4ff;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #e60000;
+}
+
+@media (max-width: 992px) {
+    .recipe-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .recipe-card {
+        width: 100%;
+    }
+}
