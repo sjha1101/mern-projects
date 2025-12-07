@@ -13,7 +13,6 @@ function AddMenu() {
                     <form>
 
                         <div className="row g-4">
-
                             <div className="col-md-6">
                                 <label className="form-label">Recipe Name</label>
                                 <input type="text" className="form-control" placeholder="Enter recipe name" />

@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import "../assets/css/userauth.css";
 
 function SignUp() {
-    const [showForm, setShowForm] = useState(true); // show popup immediately
-
+    const [showForm, setShowForm] = useState(true);
     return (
         <div className="signup-wrapper">
             {showForm && (

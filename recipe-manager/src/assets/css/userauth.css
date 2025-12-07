@@ -1,11 +1,74 @@
+.login-backbtn {
+    width: 350px;
+    height: 150px;
+    padding: 40px;
+    background: linear-gradient(135deg, #0a0f1a, #111827, #1a1a2e);
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        0 0 25px rgba(0, 238, 255, 0.4),
+        0 0 50px rgba(0, 0, 0, 0.7),
+        inset 0 0 20px rgba(0, 238, 255, 0.1);
+}
+
+.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    color: #1ed8ff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #1ed8ff;
+}
+
+.login-backbtn::before,
+.login-backbtn::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+}
+
+.login-backbtn::before {
+    top: -1px;
+    left: -1px;
+    border-top: 3px solid #00eaff;
+    border-left: 3px solid #00eaff;
+    filter: drop-shadow(0 0 12px #00eaff);
+}
+
+.login-backbtn::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 3px solid #ff2b2b;
+    border-right: 3px solid #ff2b2b;
+    filter: drop-shadow(0 0 12px #ff2b2b);
+}
+
+.open-login-btn {
+    z-index: 2;
+}
+
 .login-wrapper,
 .signup-wrapper {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0b0b0f;
-    padding: 10px;
+    background: #000000;
+    padding: 1px;
     box-sizing: border-box;
 }
 

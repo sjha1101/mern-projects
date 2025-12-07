@@ -4,7 +4,6 @@ import "../assets/css/HomePage.css";
 
 function HomePage() {
 
-    // Sample data - in real app, fetch from backend or localStorage
     const [recipes, setRecipes] = useState([
         {
             id: 1,
@@ -61,7 +60,7 @@ function HomePage() {
                                 <p><strong>Description:</strong> {recipe.description}</p>
                             </div>
                             <div className="recipe-actions">
-                                <button onClick={() => handleEdit(recipe.id)} className="edit-btn">✏️ Edit</button>
+                                <button link="/EditPage" onClick={() => handleEdit(recipe.id)} className="edit-btn">✏️ Edit</button>
                                 <button onClick={() => handleDelete(recipe.id)} className="delete-btn">🗑️ Delete</button>
                             </div>
                         </div>
