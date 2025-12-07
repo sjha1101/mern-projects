@@ -40,7 +40,7 @@ function HomePage() {
         <div className="home-wrapper">
             <div className="home-header">
                 <h2>My Recipes</h2>
-                <Link to="/add-menu" className="add-btn">➕ Add Recipe</Link>
+                <Link to="/AddMenu" className="add-btn">➕ Add Recipe</Link>
             </div>
 
             <div className="card-container">
