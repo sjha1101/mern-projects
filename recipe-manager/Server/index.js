@@ -1,28 +1,36 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
+const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 
 const app = express();
-
 app.use(express.json());
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected successfully");
-  } catch (error) {
-    console.error("MongoDB connection error:", error);
-  }
+const corsOptions = {
+    origin: "https://mern-projects-eta.vercel.app",   
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 };
 
-connectDB();
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); 
 
-app.use("/api/", userRoutes);
-app.use("/api/", recipeRoutes);
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB connected successfully"))
+    .catch(err => console.error("MongoDB connection error:", err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://127.0.0.1:${process.env.PORT}`);
-});
+app.use("/api", userRoutes);
+app.use("/api", recipeRoutes);
+
+const clientBuildPath = path.join(__dirname, "../Client/dist");
+app.use(express.static(clientBuildPath));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
+);
