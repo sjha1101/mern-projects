@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/css/AddRecipe.css";
+import "../assets/css/AddMenu.css";
 
 function AddRecipe() {
     return (
