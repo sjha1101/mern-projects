@@ -11,14 +11,15 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: "https://mern-projects-eta.vercel.app",   
+    origin: "https://mern-projects-eta.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 };
 
+// Must NOT use "*"
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); 
+app.options("/*", cors(corsOptions));   
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected successfully"))
