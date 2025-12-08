@@ -1,17 +1,65 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/userauth.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Login() {
     const [showForm, setShowForm] = useState(false);
 
+    // State variables
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    const navigate = useNavigate();
+
+    const API = import.meta.env.VITE_API_URL; // Backend URL
+
+    const handleLogin = async () => {
+        setError("");
+        setSuccess("");
+
+        if (!username || !password) {
+            return setError("All fields are required");
+        }
+
+        try {
+            const response = await fetch(`${API}/api/users/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSuccess("Login Successful!");
+
+                // Save token (optional)
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                }
+
+                // Navigate after success
+                setTimeout(() => {
+                    navigate("/dashboard");
+                }, 700);
+
+            } else {
+                setError(data.message || "Invalid credentials");
+            }
+
+        } catch (err) {
+            setError("Server error");
+        }
+    };
+
     return (
-
         <div className="container-fluid login-wrapper">
-
             <div className="row justify-content-center">
-
                 <div className="col-md-3 col-sm-6 d-flex justify-content-center">
 
                     <div className="login-backbtn">
@@ -27,9 +75,9 @@ function Login() {
 
                         {showForm && (
                             <div className="login-popup">
-
                                 <div className="login-box-1">
 
+                                    {/* Neon Corners */}
                                     <div className="neon-corner-blue top-left"></div>
                                     <div className="neon-corner-red bottom-right"></div>
 
@@ -44,19 +92,28 @@ function Login() {
 
                                         <h2 className="neon-title">LOGIN</h2>
 
+                                        {error && <p className="error-text">{error}</p>}
+                                        {success && <p className="success-text">{success}</p>}
 
                                         <input
                                             type="text"
                                             className="neon-input"
                                             placeholder="Username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
                                         />
+
                                         <input
                                             type="password"
                                             className="neon-input"
                                             placeholder="Password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
 
-                                        <button className="sign-btn">Sign In</button>
+                                        <button className="sign-btn" onClick={handleLogin}>
+                                            Sign In
+                                        </button>
 
                                         <div className="bottom-links">
                                             <a href="#">Forgot Password</a>
@@ -70,6 +127,7 @@ function Login() {
                         )}
 
                     </div>
+
                 </div>
             </div>
         </div>
