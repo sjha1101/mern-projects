@@ -10,9 +10,8 @@ const recipeRoutes = require("./routes/recipeRoutes");
 const app = express();
 app.use(express.json());
 
-// Enable CORS for all routes
 app.use(cors({
-    origin: "https://mern-projects-eta.vercel.app",
+    origin: "https://mern-projects-ao1kgvluv-surbhi-jhas-projects.vercel.app",
     credentials: true
 }));
 
@@ -23,7 +22,6 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/api", userRoutes);
 app.use("/api", recipeRoutes);
 
-// Serve frontend build
 app.use(express.static(path.join(__dirname, "../Client/dist")));
 
 const PORT = process.env.PORT || 5000;
