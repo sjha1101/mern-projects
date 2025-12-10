@@ -41,7 +41,7 @@ function Login() {
                 }
 
                 setTimeout(() => {
-                    navigate("/dashboard");
+                    navigate("/HomePage");
                 }, 700);
 
             } else {
