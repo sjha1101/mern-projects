@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/userauth.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { API } from "../config";  // <-- use this
 
 function Login() {
     const [showForm, setShowForm] = useState(false);
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
     const navigate = useNavigate();
 
-    const API = import.meta.env.VITE_API_URL;
-    console.log("ENV:", import.meta.env);
-    console.log("API:", import.meta.env.VITE_API_URL);
+    console.log("API URL:", API);  // <-- debug
 
     const handleLogin = async () => {
         setError("");
