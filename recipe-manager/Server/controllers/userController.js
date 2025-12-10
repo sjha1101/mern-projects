@@ -16,7 +16,7 @@ exports.registerUser = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-         const newUser = new User({
+        const newUser = new User({
             username,
             password: hashedPassword
         });
@@ -30,7 +30,6 @@ exports.registerUser = async (req, res) => {
     }
 };
 
-
 exports.loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -38,7 +37,7 @@ exports.loginUser = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ message: "All fields are required" });
         }
-    
+
         const user = await User.findOne({ username });
         if (!user) {
             return res.status(400).json({ message: "Invalid username or password" });
