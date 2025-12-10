@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://mern-projects-ao1kgvluv-surbhi-jhas-projects.vercel.app"],
+    origin: ["https://mern-projects-eta.vercel.app"],
     credentials: true,
   })
 );

@@ -1,2 +1,2 @@
 recipe-manager/Server/.env
-recipe-manager/Client/.env
+recipe-manager/Client/src/config.js
