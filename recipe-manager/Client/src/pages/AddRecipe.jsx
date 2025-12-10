@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/AddMenu.css";
 import { API } from "../config";
-function AddRecipe() {
 
+function AddRecipe() {
     const [form, setForm] = useState({
-        title: "",
+        name: "",
         category: "",
         ingredients: "",
         description: "",
@@ -24,8 +24,13 @@ function AddRecipe() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!form.name || !form.category || !form.ingredients || !form.description || !form.cookingTime || !form.image) {
+            alert("Please fill all fields and upload an image.");
+            return;
+        }
+
         const formData = new FormData();
-        formData.append("title", form.title);
+        formData.append("name", form.name);
         formData.append("category", form.category);
         formData.append("ingredients", form.ingredients);
         formData.append("description", form.description);
@@ -44,10 +49,11 @@ function AddRecipe() {
                 alert("Recipe added successfully!");
                 window.location.href = "/HomePage";
             } else {
-                alert(data.message);
+                alert(data.message || "Failed to add recipe");
             }
         } catch (err) {
             console.error("Add recipe error:", err);
+            alert("Server error while adding recipe.");
         }
     };
 
@@ -55,17 +61,14 @@ function AddRecipe() {
         <div className="container d-flex justify-content-center mt-5">
             <div className="box">
                 <div className="form-card">
-
                     <h2 className="text-center mb-4">Add Your Recipe</h2>
-
                     <form onSubmit={handleSubmit}>
                         <div className="row g-4">
-
                             <div className="col-md-6">
                                 <label className="form-label">Recipe Name</label>
                                 <input
                                     type="text"
-                                    name="title"
+                                    name="name"
                                     className="form-control"
                                     placeholder="Enter recipe name"
                                     onChange={handleChange}
@@ -116,6 +119,7 @@ function AddRecipe() {
                                 <label className="form-label">Upload Image</label>
                                 <input
                                     type="file"
+                                    name="image"
                                     className="form-control"
                                     accept="image/*"
                                     onChange={handleImageChange}
@@ -134,13 +138,13 @@ function AddRecipe() {
                                     required
                                 />
                             </div>
-
                         </div>
 
                         <div className="text-center mt-4">
-                            <button type="submit" className="btn btn-custom">Submit</button>
+                            <button type="submit" className="btn btn-custom">
+                                Submit
+                            </button>
                         </div>
-
                     </form>
                 </div>
             </div>
