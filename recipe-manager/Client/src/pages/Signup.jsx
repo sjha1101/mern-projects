@@ -79,7 +79,7 @@ function SignUp() {
                             <input
                                 type="password"
                                 className="neon-input"
-                                placeholder="Confirm Password"
+                                placeholder="ConfirmPassword"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                             />
