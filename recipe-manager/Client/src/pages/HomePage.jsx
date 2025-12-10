@@ -10,7 +10,7 @@ function HomePage() {
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
-                const res = await fetch(`${API}/api/add`);
+                const res = await fetch(`${API}/api/all`);
                 const data = await res.json();
                 setRecipes(data);
             } catch (err) {
