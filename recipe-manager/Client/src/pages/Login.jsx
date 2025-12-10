@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/userauth.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { API } from "../config";  // <-- use this
 
 function Login() {
     const [showForm, setShowForm] = useState(false);
-
-    // State variables
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
     const navigate = useNavigate();
 
-    const API = import.meta.env.VITE_API_URL; // Backend URL
-    console.log("API URL:", API);
+    console.log("API URL:", API);  // <-- debug
+
     const handleLogin = async () => {
         setError("");
         setSuccess("");
@@ -27,9 +25,7 @@ function Login() {
         try {
             const response = await fetch(`${API}/users/login`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
             });
 
@@ -37,15 +33,8 @@ function Login() {
 
             if (response.ok) {
                 setSuccess("Login Successful!");
-
-                if (data.token) {
-                    localStorage.setItem("token", data.token);
-                }
-
-                setTimeout(() => {
-                    navigate("/dashboard");
-                }, 700);
-
+                if (data.token) localStorage.setItem("token", data.token);
+                setTimeout(() => navigate("/dashboard"), 700);
             } else {
                 setError(data.message || "Invalid credentials");
             }
