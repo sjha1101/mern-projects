@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/userauth.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { API } from "../config";  // <-- use this
+import { API } from "../config";
 
 function Login() {
     const [showForm, setShowForm] = useState(false);
@@ -12,7 +12,7 @@ function Login() {
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
 
-    console.log("API URL:", API);  // <-- debug
+    console.log("API URL:", API);
 
     const handleLogin = async () => {
         setError("");

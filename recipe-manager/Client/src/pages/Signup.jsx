@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/userauth.css";
-
+import { API } from "../config";
 function SignUp() {
     const [showForm, setShowForm] = useState(true);
     const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ function SignUp() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-    const API = import.meta.env.VITE_API_URL;
+    console.log("API URL:", API);
 
     const handleSignUp = async () => {
         setError("");
