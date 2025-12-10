@@ -14,7 +14,9 @@ function Login() {
     const navigate = useNavigate();
 
     const API = import.meta.env.VITE_API_URL;
-    // console.log("API URL:", API);
+    console.log("ENV:", import.meta.env);
+    console.log("API:", import.meta.env.VITE_API_URL);
+
     const handleLogin = async () => {
         setError("");
         setSuccess("");
