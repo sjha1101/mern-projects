@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/AddMenu.css";
-
+import { API } from "../config";
 function AddRecipe() {
-    const API = import.meta.env.VITE_API_URL;
 
     const [form, setForm] = useState({
         title: "",
