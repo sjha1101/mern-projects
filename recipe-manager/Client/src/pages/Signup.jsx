@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/userauth.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { API } from "../config";
+
 function SignUp() {
     const [showForm, setShowForm] = useState(true);
     const [username, setUsername] = useState("");
@@ -9,8 +11,7 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
-    console.log("API URL:", API);
+    const navigate = useNavigate();
 
     const handleSignUp = async () => {
         setError("");
@@ -27,76 +28,97 @@ function SignUp() {
         try {
             const response = await fetch(`${API}/api/signup`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                setSuccess("Registration successful!");
+                setSuccess("Registration Successful!");
+
+                setTimeout(() => {
+                    navigate("/");
+                }, 800);
             } else {
                 setError(data.message || "Something went wrong");
             }
-
         } catch (err) {
             setError("Server error");
         }
     };
 
     return (
-        <div className="signup-wrapper">
-            {showForm && (
-                <div className="signup-popup">
-                    <div className="signup-box-1">
-                        <div className="neon-corner-blue top-left"></div>
-                        <div className="neon-corner-red bottom-right"></div>
+        <div className="container-fluid login-wrapper">
+            <div className="row justify-content-center">
+                <div className="col-md-3 col-sm-6 d-flex justify-content-center">
 
-                        <div className="signup-box">
-                            <h2 className="neon-title">SIGN UP</h2>
+                    <div className="login-backbtn">
 
-                            {error && <p className="error-text">{error}</p>}
-                            {success && <p className="success-text">{success}</p>}
+                        {showForm && (
+                            <div className="login-popup">
+                                <div className="login-box-1">
 
-                            <input
-                                type="text"
-                                className="neon-input"
-                                placeholder="Username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
+                                    {/* Neon Corners */}
+                                    <div className="neon-corner-blue top-left"></div>
+                                    <div className="neon-corner-red bottom-right"></div>
 
-                            <input
-                                type="password"
-                                className="neon-input"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                                    <div className="login-box">
 
-                            <input
-                                type="password"
-                                className="neon-input"
-                                placeholder="confirmPassword"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
+                                        <button
+                                            className="close-btn back-btn"
+                                            onClick={() => navigate("/")}
+                                        >
+                                            ⬅
+                                        </button>
 
-                            <button className="sign-btn" onClick={handleSignUp}>
-                                Register
-                            </button>
+                                        <h2 className="neon-title">SIGN UP</h2>
 
-                            <div className="bottom-links">
-                                <Link to="/" className="signup-link">
-                                    Already have an account? Login
-                                </Link>
+                                        {error && <p className="error-text">{error}</p>}
+                                        {success && <p className="success-text">{success}</p>}
+
+                                        <input
+                                            type="text"
+                                            className="neon-input"
+                                            placeholder="Username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                        />
+
+                                        <input
+                                            type="password"
+                                            className="neon-input"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+
+                                        <input
+                                            type="password"
+                                            className="neon-input"
+                                            placeholder="Confirm Password"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                        />
+
+                                        <button className="sign-btn" onClick={handleSignUp}>
+                                            Register
+                                        </button>
+
+                                        <div className="bottom-links">
+                                            <Link to="/" className="signup-link">
+                                                Already have an account? Login
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        )}
+
                     </div>
+
                 </div>
-            )}
+            </div>
         </div>
     );
 }
