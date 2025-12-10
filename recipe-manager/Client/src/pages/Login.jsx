@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Login() {
     const [showForm, setShowForm] = useState(false);
 
+    // State variables
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -13,7 +14,7 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_URL; // Backend URL
     console.log("API URL:", API);
     const handleLogin = async () => {
         setError("");
@@ -24,7 +25,7 @@ function Login() {
         }
 
         try {
-            const response = await fetch(`${API}/api/login`, {
+            const response = await fetch(`${API}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
