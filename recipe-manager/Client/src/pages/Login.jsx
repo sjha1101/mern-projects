@@ -38,12 +38,10 @@ function Login() {
             if (response.ok) {
                 setSuccess("Login Successful!");
 
-                // Save token (optional)
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                 }
 
-                // Navigate after success
                 setTimeout(() => {
                     navigate("/dashboard");
                 }, 700);
